@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend-1
-        image: lxmhoang/udagram-frontend:v4
+        image: lxmhoang/udagram-frontend:latest
         env:
             - name: URL
               valueFrom:

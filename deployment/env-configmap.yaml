@@ -7,7 +7,7 @@ data:
   JWT_SECRET: testing
   POSTGRES_DB: uda_db
   POSTGRES_HOST: database-2.cxhwvkhxhlje.us-west-1.rds.amazonaws.com
-  URL: http://a88fecc006de74ddaa1e6bf76a5db192-989407584.us-west-2.elb.amazonaws.com:8080
+  URL: *
 metadata:
   name: env-config
 # # you will replace URL with the URL of the frontend once you deploy it to AWS.

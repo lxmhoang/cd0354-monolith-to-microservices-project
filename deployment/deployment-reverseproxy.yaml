@@ -15,15 +15,7 @@ spec:
         app: udagram-reverseproxy
     spec:
       containers:
-        - image: lxmhoang/udagram-reverseproxy:v2
-          name: reverseproxy-1
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "1024Mi"
-              cpu: "500m"
-          ports:
+      - image: lxmhoang/udagram-reverseproxy:latest
+        name: reverseproxy-1
+        ports:
           - containerPort: 8080
-        restartPolicy: Always

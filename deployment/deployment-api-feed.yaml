@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-feed
-        image: lxmhoang/udagram-api-feed:v1 
+        image: lxmhoang/udagram-api-feed:latest
         env:
             - name: URL
               valueFrom:
