@@ -1,0 +1,29 @@
+kubectl delete deployment --all
+kubectl delete service --all
+kubectl delete pod --all
+kubectl apply -f aws-secret.yaml
+kubectl apply -f env-secret.yaml
+kubectl apply -f env-configmap.yaml
+
+kubectl apply -f deployment-api-feed.yaml
+kubectl apply -f service-api-feed.yaml
+
+kubectl apply -f deployment-api-user.yaml
+kubectl apply -f service-api-user.yaml
+
+kubectl apply -f deployment-frontend.yaml
+kubectl apply -f service-frontend.yaml
+kubectl expose deployment udagram-frontend --type=LoadBalancer --name=frontend-service
+
+** proxy **
+kubectl delete deployment udagram-reverseproxy
+kubectl delete service udagram-reverseproxy
+kubectl delete service proxy-service
+kubectl apply -f deployment-reverseproxy.yaml
+kubectl apply -f service-reverse-proxy.yaml
+kubectl expose deployment udagram-reverseproxy --type=LoadBalancer --name=proxy-service
+kubectl get services
+
+
+
+kubectl expose deployment backend-feed --type=LoadBalancer --name=feed-service
