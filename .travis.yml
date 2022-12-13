@@ -22,7 +22,9 @@ script:
   - docker tag udagram-api-feed lxmhoang/udagram-api-feed:latest
   - docker build -t udagram-api-user ./userapi/udagram-api-user
   - docker tag udagram-api-user lxmhoang/udagram-api-user:latest
-  - docker build -t udagram-reverseproxy ./reverseproxy/udagram-reverseproxy
+  - docker build -t udagram-reverseproxy ./reverseproxy/udagram-reverseproxy 
+  - docker run -e userservername="$USERSERVERNAME" -e feedservername="$FEEDSERVERNAME" --name  reverseproxy-1 lxmhoang/udagram-reverseproxy:latest
+
   - docker tag udagram-reverseproxy lxmhoang/udagram-reverseproxy:latest
 
 
