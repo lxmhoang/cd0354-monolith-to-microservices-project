@@ -3,20 +3,36 @@ kind: Deployment
 metadata:
   name: backend-feed
   labels:
-    app: backend-feed
+    service: backend-feed
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: backend-feed
+      service: backend-feed
   template:
     metadata:
       labels:
-        app: backend-feed
+        service: backend-feed
     spec:
       containers:
       - name: backend-feed
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         image: lxmhoang/udagram-api-feed:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"              
+        ports:
+        - containerPort: 8080
         env:
             - name: URL
               valueFrom:
@@ -58,6 +74,12 @@ spec:
                 configMapKeyRef:
                   name: env-config
                   key: JWT_SECRET
-        ports:
-        - containerPort: 8080
+        volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: false           
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
 
